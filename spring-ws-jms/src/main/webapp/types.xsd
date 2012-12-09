@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.han.nl/schemas/types"
+        xmlns:tns="http://www.han.nl/schemas/types"
+        elementFormDefault="qualified">
+
+    <complexType name="Registration">
+        <sequence>
+            <element name="number" type="int"/>
+            <element name="date" type="dateTime"/>
+            <element name="user" type="tns:User"/>
+            <element name="succesFul" type="boolean"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="User">
+        <sequence>
+            <element name="firstname" type="string"/>
+            <element name="lastname" type="string"/>
+            <element name="card" type="tns:Creditcard"/>
+        </sequence>
+    </complexType>
+    
+    <complexType name="Creditcard">
+        <sequence>
+            <element name="number" type="int"/>
+            <element name="cvc" type="int"/>
+            <element name="validThrough" type="dateTime"/>
+        </sequence>
+    </complexType>
+    
+
+</schema>
