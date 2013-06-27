@@ -19,19 +19,31 @@ package nl.han.dare2date.service.web.applyregistration;
 import nl.han.dare2date.service.web.applyregistration.model.ApplyRegistrationRequest;
 import nl.han.dare2date.service.web.applyregistration.model.ApplyRegistrationResponse;
 import org.apache.camel.Exchange;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
 
+/**
+ * When you run this route, messages can be obtained from two sources:
+ * - inbox-folder (located in the bin-directory of your Tomcat/Jetty instance (don't run this example with mvn tomcat:run,
+ * instead use a separate server. In src/main/webapp/WEB-INF/applyregistrationservice an example messages is included which
+ * you can copy to your inbox folder in case your webservice is not available.
+ * - a webservice with its wsdl served at http://localhost:8080/Dare2DateCamel/applyregistration.wsdl
+ */
 public class ApplyRegistrationRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         JaxbDataFormat jaxb = new JaxbDataFormat(ApplyRegistrationRequest.class.getPackage().getName());
 
-        from("spring-ws:rootqname:{http://www.han.nl/schemas/messages}ApplyRegistrationRequest?endpointMapping=#applyRegistrationEndpointMapping")
-                .unmarshal(jaxb)
-                .process(new Echo()).
-                marshal(jaxb);
+        from("file://inbox")
+                .from("spring-ws:rootqname:{http://www.han.nl/schemas/messages}ApplyRegistrationRequest?endpointMapping=#applyRegistrationEndpointMapping")
+                    .unmarshal(jaxb)
+                        .process(new Echo()).
+                            marshal(jaxb).
+                                log(LoggingLevel.INFO, "Body ${body}")
+
+        ;
     }
 
     private static final class Echo implements Processor {

@@ -1,0 +1,16 @@
+<mes:ApplyRegistrationRequest xmlns:mes="http://www.han.nl/schemas/messages">
+  <mes:registration>
+    <mes:number>100</mes:number>
+    <mes:date>2008-09-29T03:49:45</mes:date>
+    <mes:user>
+      <mes:firstname>string</mes:firstname>
+      <mes:lastname>string</mes:lastname>
+      <mes:card>
+        <mes:number>100</mes:number>
+        <mes:cvc>100</mes:cvc>
+        <mes:validThrough>2014-09-19T01:18:33</mes:validThrough>
+      </mes:card>
+    </mes:user>
+    <mes:succesFul>true</mes:succesFul>
+  </mes:registration>
+</mes:ApplyRegistrationRequest>
