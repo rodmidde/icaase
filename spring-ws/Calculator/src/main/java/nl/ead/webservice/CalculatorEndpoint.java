@@ -15,10 +15,12 @@ import java.util.List;
 public class CalculatorEndpoint {
     private Marshaller marshaller;
     private Unmarshaller unmarshaller;
+    private IMoviePrinter moviePrinter;
 
-    public CalculatorEndpoint(Marshaller marshaller, Unmarshaller unmarshaller) {
+    public CalculatorEndpoint(Marshaller marshaller, Unmarshaller unmarshaller, IMoviePrinter moviePrinter) {
         this.marshaller = marshaller;
         this.unmarshaller = unmarshaller;
+        this.moviePrinter = moviePrinter;
     }
 
     @SuppressWarnings({"unchecked", "deprecation"})
@@ -43,31 +45,15 @@ public class CalculatorEndpoint {
             }
         }
 
-        XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-        try {
-
-            config.setServerURL(new URL("http://www.moviemeter.nl/ws"));
-            XmlRpcClient client = new XmlRpcClient();
-            client.setConfig(config);
-            Object[] params = new Object[]{new String("6e3fjzydznzxv2q2qgntyu0g10crthmm")};
-            HashMap results = (HashMap) client.execute("api.startSession", params);
-            String sessionKey = (String) results.get("session_key");
-            params = new Object[]{sessionKey, "Bond"};
-            Object[] searchResponse = (Object[]) client.execute("film.search", params);
-            for (int i = 0; i < searchResponse.length; i++) {
-                HashMap film = (HashMap) searchResponse[i];
-                System.out.println(film.get("title"));
-                System.out.println(film.get("actors_text"));
-            }
-        } catch (Exception e) {
-            System.out.println("Exception: " + e.getMessage());
-        }
-
         CalculateResult result = new CalculateResult();
         result.setMessage("Here are the results of the jury");
         result.setValue(retValue);
         CalculateResponse resp = new CalculateResponse();
         resp.setResult(result);
+
+        // OK, I know this isn't the best example of an external service for a calculator....
+        moviePrinter.printMovieDetails("Bond");
+
         return resp;
     }
 }
