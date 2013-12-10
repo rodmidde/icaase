@@ -1,1 +1,2 @@
 Base project for the realization of a Spring WS-service that talks to several JMS-services.
+The JAXB2 plugin for Maven is used to generate JAXB classes that are Serializable by default.
