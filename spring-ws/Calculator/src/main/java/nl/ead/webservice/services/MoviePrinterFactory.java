@@ -1,4 +1,7 @@
-package nl.ead.webservice;
+package nl.ead.webservice.services;
+
+import nl.ead.webservice.services.IMoviePrinter;
+import nl.ead.webservice.services.MoviePrinter;
 
 /**
  * Description for the class MoviePrinterFactory:

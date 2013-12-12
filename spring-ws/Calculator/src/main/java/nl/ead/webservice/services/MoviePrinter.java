@@ -1,4 +1,4 @@
-package nl.ead.webservice;
+package nl.ead.webservice.services;
 
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;

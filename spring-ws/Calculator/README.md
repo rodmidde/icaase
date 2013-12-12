@@ -1,12 +1,13 @@
 * To start:
-	* Fix your JDK to 1.6
+    * Install MySQL, create a database named dare2date accessible for the root user using no password. For connection details see persistence.xml.
+	* Fix your JDK to 1.6 of higher
 	* Try to run mvn clean package
 	* If it fails on javax.activation: 
 		* Watch the within-a-minute screencast: https://vimeo.com/67329514
 		* Download the file manually: http://mirrors.ibiblio.org/maven2/javax/xml/bind/activation/1.0.2/activation-1.0.2.jar
 		* Add it to your local repo: 
 			mvn install:install-file -DgroupId=javax.activation -DartifactId=activation -Dversion=1.0.2 -Dpackaging=jar -Dfile=activation-1.0.2.jar
-	* Try to run mvn tomcat:run 
+	* Try to run mvn tomcat:run (or deploy the app to a Tomcat server running in your IDE)
 	* Visit the WSDL manually or use SOAPUI: http://localhost:8080/Calculator/calculatorservice.wsdl
 	* When running the projects results in a HTTP Bad Request, try to run the web-application in a separate Tomcat instance: Download and install Tomcat, Create a Server Configuration in your IDE and start/debug your application on Tomcat in your IDE.
 * To debug: 
@@ -18,3 +19,4 @@
 * Two sets of XSD documents
 * Uses XML-RPC call to MovieMeter, so this service is actually a client too
 * Extensive configuration of spring-ws-servlet.xml
+* Uses JPA/Hibernate with MySQL

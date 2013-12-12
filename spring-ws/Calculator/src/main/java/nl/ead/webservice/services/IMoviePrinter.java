@@ -1,4 +1,4 @@
-package nl.ead.webservice;
+package nl.ead.webservice.services;
 
 /**
  * Description for the class IMoviePrinter:
