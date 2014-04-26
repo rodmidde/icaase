@@ -75,6 +75,10 @@ public abstract class Requestor {
 		System.out.println("\tContents:   " + requestMessage.getObject());
 	}
 
+    /**
+     * Override this method to provide an ObjectMessage that will be sent with the request
+     * @return
+     */
 	public abstract ObjectMessage getObjectMessage();
 
 	public void receiveSync() throws JMSException {
@@ -114,6 +118,10 @@ public abstract class Requestor {
 		return session;
 	}
 
+    /**
+     * Override this method to retrieve the response
+     * @return
+     */
 	public abstract Serializable getResponse();
 
 	public ObjectMessage getReplyMessage() {

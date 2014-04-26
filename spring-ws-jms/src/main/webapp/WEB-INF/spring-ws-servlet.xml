@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:sws="http://www.springframework.org/schema/web-services"
-       xmlns:oxm="http://www.springframework.org/schema/oxm"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/oxm
-http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/webservices-1.5.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
     <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
     <bean id="messageReceiver"
           class="org.springframework.ws.soap.server.SoapMessageDispatcher"/>
@@ -21,8 +18,7 @@ http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd http://www.springfr
         <constructor-arg ref="marshaller"/>
         <constructor-arg ref="unmarshaller"/>
     </bean>
-    <bean
-            class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+    <bean class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
         <constructor-arg ref="marshaller"/>
     </bean>
     <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
@@ -35,12 +31,9 @@ http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd http://www.springfr
           class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
         <property name="interceptors">
             <list>
-                <bean
-                        class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
-                <bean
-                        class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
-                <bean
-                        class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
                     <property name="xsdSchemaCollection" ref="schemaCollection"/>
                     <property name="validateRequest" value="true"/>
                     <property name="validateResponse" value="true"/>

@@ -22,9 +22,6 @@
 
 package nl.han.dare2date.service.jms.util;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
@@ -32,41 +29,36 @@ import javax.jms.JMSException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.io.IOException;
+import java.util.Properties;
 
 public class JMSUtil {
-	private static Context getContext() throws NamingException, IOException
-	{
-		Properties props = new Properties();
-        props.load(JMSUtil.class.getClassLoader().
-                getResourceAsStream("jndi.properties"));
-		return new InitialContext(props); 
-	}
-	
-	
-	public static Destination getDestinationForQueue(String requestQueueName) {
-		Context ctx 				= null;
-		Destination destination 	= null;
-		try {
-			ctx = getContext();
-			destination = (Destination) ctx.lookup(requestQueueName);
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return destination;
-	}
-
-    public static Connection getConnection(String clientID)
-    {
-        Context ctx 							= null;
-        ConnectionFactory connectionFactory 	= null;
-        Connection connection 					= null;
+    /**
+     * Returns a reference to a Destination object given a queuename
+     * @param queueName
+     * @return
+     */
+    public static Destination getDestinationForQueue(String queueName) {
+        Destination destination = null;
         try {
-            ctx = getContext();
-            connectionFactory = (ConnectionFactory)
-                    ctx.lookup("ConnectionFactory");
-            connection = connectionFactory.createConnection();
+            destination = (Destination) getContext().lookup(queueName);
+        } catch (NamingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a connection to the JMS broker for a specific clientID
+     * @param clientID
+     * @return
+     */
+    public static Connection getConnection(String clientID) {
+        Connection connection = null;
+        try {
+            connection = ((ConnectionFactory) getContext().lookup("ConnectionFactory")).createConnection();
             connection.setClientID(clientID);
             connection.start();
         } catch (NamingException e) {
@@ -79,25 +71,30 @@ public class JMSUtil {
         return connection;
     }
 
+    /**
+     * Returns a connection to the JMS broker
+     * @return
+     */
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = ((ConnectionFactory) getContext().lookup("ConnectionFactory")).createConnection();
+            connection.start();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
 
-    public static Connection getConnection()
-	{
-		Context ctx 							= null;
-		ConnectionFactory connectionFactory 	= null;
-		Connection connection 					= null;
-		try {
-			ctx = getContext();
-			connectionFactory = (ConnectionFactory)
-			  ctx.lookup("ConnectionFactory");
-			connection = connectionFactory.createConnection();
-			connection.start();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		return connection;
-	}
+
+    private static Context getContext() throws NamingException, IOException {
+        Properties props = new Properties();
+        props.load(JMSUtil.class.getClassLoader().
+                getResourceAsStream("jndi.properties"));
+        return new InitialContext(props);
+    }
 }

@@ -114,8 +114,16 @@ public abstract class Replier implements MessageListener {
 		}
 	}
 
+    /**
+     * Override this method to provide an ObjectMessage with the reply
+     * @return
+     */
 	public abstract ObjectMessage getReplyMessage();
 
+    /**
+     * Override this method to implement how the incoming message should be handled
+     * @param contents
+     */
 	public abstract void handleMessage(Serializable contents);
 
 	public Session getSession() {

@@ -1,2 +1,6 @@
 Base project for the realization of a Spring WS-service that talks to several JMS-services.
 The JAXB2 plugin for Maven is used to generate JAXB classes that are Serializable by default.
+
+Hints:
+* Look at the JMS demo movie: https://vimeo.com/68984379
+* Look at the class diagram: https://online.han.nl/sites/5-ICA-MINOR-F_MCAP/PrograboutProgrUitvoering/Afbeeldingen/Forms/DispForm.aspx?ID=1

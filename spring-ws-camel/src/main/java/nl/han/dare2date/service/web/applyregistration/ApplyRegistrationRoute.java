@@ -38,12 +38,14 @@ public class ApplyRegistrationRoute extends RouteBuilder {
 
         from("file://inbox")
                 .from("spring-ws:rootqname:{http://www.han.nl/schemas/messages}ApplyRegistrationRequest?endpointMapping=#applyRegistrationEndpointMapping")
-                    .unmarshal(jaxb)
-                        .process(new Echo()).
-                            marshal(jaxb).
-                                log(LoggingLevel.INFO, "Body ${body}")
-
-        ;
+                    .unmarshal(jaxb).
+                        split().method("twitterSplitter", "split").
+                            log("${body}").
+                                to("file://outbox").
+                                    aggregate(constant(true), new TwitterAggregator()).completionSize(2).
+                                        log("${body}");
+                        //.process(new Echo())
+                            //.marshal(jaxb);
     }
 
     private static final class Echo implements Processor {
