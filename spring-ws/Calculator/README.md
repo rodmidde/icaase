@@ -20,3 +20,4 @@
 * Uses XML-RPC call to MovieMeter, so this service is actually a client too
 * Extensive configuration of spring-ws-servlet.xml
 * Uses JPA/Hibernate with MySQL
+* Watch the demo if you want a step-by-step introduction to this codebase: https://vimeo.com/66848876
