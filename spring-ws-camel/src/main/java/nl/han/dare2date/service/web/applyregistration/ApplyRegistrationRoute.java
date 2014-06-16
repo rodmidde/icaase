@@ -30,6 +30,7 @@ import org.apache.camel.converter.jaxb.JaxbDataFormat;
  * instead use a separate server. In src/main/webapp/WEB-INF/applyregistrationservice an example messages is included which
  * you can copy to your inbox folder in case your webservice is not available.
  * - a webservice with its wsdl served at http://localhost:8080/Dare2DateCamel/applyregistration.wsdl
+ * (otherwise: http://localhost:8080/applyregistration.wsdl)
  */
 public class ApplyRegistrationRoute extends RouteBuilder {
     @Override
@@ -39,13 +40,9 @@ public class ApplyRegistrationRoute extends RouteBuilder {
         from("file://inbox")
                 .from("spring-ws:rootqname:{http://www.han.nl/schemas/messages}ApplyRegistrationRequest?endpointMapping=#applyRegistrationEndpointMapping")
                     .unmarshal(jaxb).
-                        split().method("twitterSplitter", "split").
                             log("${body}").
-                                to("file://outbox").
-                                    aggregate(constant(true), new TwitterAggregator()).completionSize(2).
-                                        log("${body}");
-                        //.process(new Echo())
-                            //.marshal(jaxb);
+                                process(new Echo())
+                                    .marshal(jaxb);
     }
 
     private static final class Echo implements Processor {
