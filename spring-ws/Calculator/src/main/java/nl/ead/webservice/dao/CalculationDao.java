@@ -2,6 +2,7 @@ package nl.ead.webservice.dao;
 
 import javax.persistence.*;
 import nl.ead.webservice.model.Calculation;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author mdkr
  * @version Copyright (c) 2012 HAN University, All rights reserved.
  */
+@Repository
 public class CalculationDao implements ICalculationDao {
 
     @PersistenceContext

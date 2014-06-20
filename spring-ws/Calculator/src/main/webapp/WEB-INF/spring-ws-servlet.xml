@@ -48,6 +48,4 @@
     <bean id="moviePrinter" factory-bean="moviePrinterFactory" factory-method="create"/>
 
     <bean id="moviePrinterFactory" class="nl.ead.webservice.services.MoviePrinterFactory"/>
-
-    <bean id="calculationDao" class="nl.ead.webservice.dao.CalculationDao"/>
 </beans>
