@@ -3,13 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     
+    <!--Scan for classes that can be autowired-->
     <context:component-scan base-package="nl.ead.webservice"/>
+    <!--Allow usage of annotation driven webservices with @Endpoint, @RequestPayload, @ResponsePayload etc.-->
     <sws:annotation-driven/>
+    <!--Allow usage of @Transactional to run database transactions, used in conjunction with entityManagerFactory and transactionManager beans-->
+    <tx:annotation-driven/>
     
+    <!--Interceptors get to process incoming before and outgoing messages after the endpoint-->
     <sws:interceptors>
         <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
         <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
@@ -27,7 +34,16 @@
                       targetNamespace="http://www.han.nl/schemas/calculator/definitions">
         <sws:xsd location="/calculator/messages.xsd" />
     </sws:dynamic-wsdl>
-
+    
+    <!--This bean gets used to create EntityManagers which can be used for Repositories/DAOs-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="calculator"/>
+    </bean>
+    <!--This bean gets used to manage the transactions inside the EntityManagers, without it data would not get saved as transactions are never flushed-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+        
     <!-- Small example of how to use a factory bean in Spring. Not really necessary for this case. -->
     <bean id="moviePrinter" factory-bean="moviePrinterFactory" factory-method="create"/>
 

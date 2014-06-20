@@ -129,6 +129,13 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
+        
+        <!--Spring container managed transactions-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.0.5.RELEASE</version>
+        </dependency>
         <!--End Persistance JPA/MySQL dependencies-->
         
         <!--Start dependencies needed for demo-->
