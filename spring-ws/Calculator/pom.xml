@@ -38,8 +38,9 @@
             </plugin>
             
             <plugin>
-                <groupId>com.sun.tools.xjc.maven2</groupId>
-                <artifactId>maven-jaxb-plugin</artifactId>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.9.0</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -49,10 +50,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <generatePackage>nl.ead.webservice
-                    </generatePackage>
-                    <schemaDirectory>src/main/webapp/calculator
-                    </schemaDirectory>
+                    <generatePackage>nl.ead.webservice</generatePackage>
+                    <schemaDirectory>${basedir}/src/main/webapp/calculator</schemaDirectory>
                 </configuration>
             </plugin>
         </plugins>
