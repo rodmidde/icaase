@@ -14,6 +14,8 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.ws.version>2.1.4.RELEASE</spring.ws.version>
+        <spring.framework.version>4.3.5.Final</spring.framework.version>
     </properties>
 
     <build>
@@ -58,5 +60,83 @@
     </build>
     
     <dependencies>
+        <!--Start Spring-WS dependencies-->
+        <!--Spring-WS-->
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <!--Optional runtime dependency for inlining XSD's-->
+        <dependency>
+            <groupId>org.apache.ws.xmlschema</groupId>
+            <artifactId>xmlschema-core</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <!--End Spring-WS dependencies-->
+        
+        <!--Start Unit Testing dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!--End Unit Testing dependencies-->
+        
+        <!--Start Persistance JPA/MySQL dependencies-->
+        <!--MySQL database driver used by Hibernate/c3p0-->      
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.31</version>
+        </dependency>
+        
+        <!--Hibernate ORM for persistance-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${spring.framework.version}</version>
+        </dependency>
+        
+        <!--Hibernate EntityManager provides the implementation of the JPA EntityManager-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${spring.framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jpa</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+        
+        <!--c3p0 is a connection pooler, it avoids creating new database connections
+        by mantaining a pool of open connections-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${spring.framework.version}</version>
+        </dependency>        
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+        <!--End Persistance JPA/MySQL dependencies-->
+        
+        <!--Start dependencies needed for demo-->
+        <dependency>
+            <groupId>org.apache.xmlrpc</groupId>
+            <artifactId>xmlrpc-client</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+        <!--End dependencies needed for demo-->
     </dependencies>
 </project>
