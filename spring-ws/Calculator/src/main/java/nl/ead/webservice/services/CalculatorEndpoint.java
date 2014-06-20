@@ -1,33 +1,29 @@
 package nl.ead.webservice.services;
 
+import java.util.List;
 import nl.ead.webservice.*;
-import nl.ead.webservice.dao.CalculationDao;
 import nl.ead.webservice.dao.ICalculationDao;
 import nl.ead.webservice.model.Calculation;
-import org.springframework.oxm.Marshaller;
-import org.springframework.oxm.Unmarshaller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
-
-import java.util.List;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class CalculatorEndpoint {
     private final ICalculationDao calculationDao;
-    private Marshaller marshaller;
-    private Unmarshaller unmarshaller;
-    private IMoviePrinter moviePrinter;
+    private final IMoviePrinter moviePrinter;
 
-    public CalculatorEndpoint(Marshaller marshaller, Unmarshaller unmarshaller, IMoviePrinter moviePrinter, ICalculationDao calculationDao) {
-        this.marshaller = marshaller;
-        this.unmarshaller = unmarshaller;
+    @Autowired
+    public CalculatorEndpoint(IMoviePrinter moviePrinter, ICalculationDao calculationDao) {
         this.moviePrinter = moviePrinter;
         this.calculationDao = calculationDao;
     }
 
-    @SuppressWarnings({"unchecked", "deprecation"})
     @PayloadRoot(localPart = "CalculateRequest", namespace = "http://www.han.nl/schemas/messages")
-    public CalculateResponse calculateSumForName(CalculateRequest req) {
+    @ResponsePayload
+    public CalculateResponse calculateSumForName(@RequestPayload CalculateRequest req) {
         // a sequence of a minimum of 1 and unbounded max is generated as a
         // List<>
         List<Integer> paramList = req.getInput().getParamlist().getParam();
