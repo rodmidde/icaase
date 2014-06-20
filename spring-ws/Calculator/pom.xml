@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>nl.ead.webservice</groupId>
-	<artifactId>Calculator</artifactId>
-	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
-	<name>Calculator Spring-WS Application</name>
-	<url>http://www.springframework.org/spring-ws</url>
-	<build>
-		<finalName>calculator</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <name>Calculator Spring-WS Application</name>
+    <url>http://www.springframework.org/spring-ws</url>
+    
+    <groupId>nl.ead.webservice</groupId>
+    <artifactId>Calculator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+        
+    <packaging>war</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.sun.tools.xjc.maven2</groupId>
-				<artifactId>maven-jaxb-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<generatePackage>nl.ead.webservice
-					</generatePackage>
-					<schemaDirectory>src/main/webapp/calculator
-					</schemaDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	<dependencies>
+    <build>
+        <finalName>calculator</finalName>
+        
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.sun.tools.xjc.maven2</groupId>
+                <artifactId>maven-jaxb-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generatePackage>nl.ead.webservice
+                    </generatePackage>
+                    <schemaDirectory>src/main/webapp/calculator
+                    </schemaDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
     </dependencies>
 </project>
