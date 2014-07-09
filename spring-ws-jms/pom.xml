@@ -1,39 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
+    <name>Dare2Date Apply Registration Service</name>
+    <url>http://www.springframework.org/spring-ws</url>
+    
     <groupId>nl.han.dare2date</groupId>
     <artifactId>ApplyRegistrationService</artifactId>
-    <packaging>war</packaging>
-    <name>Dare2Date Apply Registration Service</name>
     <version>1.0</version>
-    <url>http://www.springframework.org/spring-ws</url>
+    
+    <packaging>war</packaging>
+        
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.ws.version>2.1.4.RELEASE</spring.ws.version>
+        <spring.framework.version>4.0.5.RELEASE</spring.framework.version>
+    </properties>
+
     <build>
         <finalName>applyregistrationservice</finalName>
         <plugins>
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+            
+            <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
             </plugin>
+            
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.8.0</version>
+                <version>0.9.0</version>
                 <configuration>
                     <schemaDirectory>src/main/webapp/applyregistrationservice</schemaDirectory>
                     <bindingDirectory>src/main/resources</bindingDirectory>
                     <generatePackage>nl.han.dare2date.applyregistrationservice</generatePackage>
-                    <strict>false</strict>
                     <extension>true</extension>
                     <plugins>
                         <plugin>
                             <groupId>org.jvnet.jaxb2_commons</groupId>
                             <artifactId>jaxb2-basics</artifactId>
-                            <version>0.6.2</version>
+                            <version>0.6.5</version>
                         </plugin>
                         <plugin>
                             <groupId>org.jvnet.jaxb2_commons</groupId>
                             <artifactId>jaxb2-basics-annotate</artifactId>
-                            <version>0.6.2</version>
+                            <version>0.6.5</version>
                         </plugin>
                     </plugins>
                     <args>
@@ -52,62 +75,36 @@
             </plugin>
         </plugins>
     </build>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>java.net.pluginrepo</id>
-            <name>Java.net Repository for Maven2</name>
-            <url>http://download.java.net/maven/1</url>
-            <layout>legacy</layout>
-        </pluginRepository>
-    </pluginRepositories>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>1.5.4</version>
-        </dependency>
+        <!--Start Spring-WS dependencies-->
+        <!--Spring-WS-->
         <dependency>
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
-            <version>1.5.4</version>
+            <version>${spring.ws.version}</version>
         </dependency>
+        <!--Optional runtime dependency for inlining XSD's-->
         <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-xml</artifactId>
-            <version>1.5.4</version>
+            <groupId>org.apache.ws.xmlschema</groupId>
+            <artifactId>xmlschema-core</artifactId>
+            <version>2.0.3</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-ws-core-tiger</artifactId>
-            <version>1.5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-oxm-tiger</artifactId>
-            <version>1.5.4</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-ws-support</artifactId>
-            <version>1.5.4</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.ws.commons.schema</groupId>
-            <artifactId>XmlSchema</artifactId>
-            <version>1.4.2</version>
-            <scope>runtime</scope>
-        </dependency>
+        <!--End Spring-WS dependencies-->
+        
+        <!--Start JMS dependencies-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
-            <version>5.2.0</version>
+            <version>5.7.0</version>
         </dependency>
+        <!--End JMS dependencies-->
+        
+        <!--The Maven JAXB jaxb_commons plugin requires this dependency-->
         <dependency>
             <groupId>org.jvnet.jaxb2_commons</groupId>
-            <artifactId>jaxb2-basics-runtime</artifactId>
-            <version>0.6.2</version>
+            <artifactId>jaxb2-basics</artifactId>
+            <version>0.6.5</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
