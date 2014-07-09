@@ -1,0 +1,48 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cal="http://www.han.nl/calculator"
+           targetNamespace="http://www.han.nl/calculator">
+
+    <xs:element name="CalculateRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="input" type="cal:CalculateInput" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CalculateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="cal:CalculateResult" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CalculateResult">
+        <xs:all>
+            <xs:element name="value" type="xs:int"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="CalculateInput">
+        <xs:all>
+            <xs:element name="paramlist" type="cal:CalculateParameters" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="operation" type="cal:CalculateOperation" minOccurs="1" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="CalculateParameters">
+        <xs:sequence>
+            <xs:element name="param" type="xs:int" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="CalculateOperation">
+        <xs:restriction base="xs:NCName">
+            <xs:enumeration value="add"/>
+            <xs:enumeration value="subtract"/>
+            <xs:enumeration value="multiply"/>
+            <xs:enumeration value="divide"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
