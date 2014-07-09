@@ -1,177 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>nl.ead.webservice</groupId>
-	<artifactId>Calculator</artifactId>
-	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
-	<name>Calculator Spring-WS Application</name>
-	<url>http://www.springframework.org/spring-ws</url>
-	<build>
-		<finalName>calculator</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <name>Calculator Spring-WS Application</name>
+    <url>http://www.springframework.org/spring-ws</url>
+    
+    <groupId>nl.ead.webservice</groupId>
+    <artifactId>Calculator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+        
+    <packaging>war</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.ws.version>2.1.4.RELEASE</spring.ws.version>
+        <spring.framework.version>4.0.5.RELEASE</spring.framework.version>
+    </properties>
 
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.sun.tools.xjc.maven2</groupId>
-				<artifactId>maven-jaxb-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<generatePackage>nl.ead.webservice
-					</generatePackage>
-					<schemaDirectory>src/main/webapp/calculator
-					</schemaDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>java.net.pluginrepo</id>
-			<name>Java.net Repository for Maven2</name>
-			<url>http://download.java.net/maven/1
-			</url>
-			<layout>legacy</layout>
-		</pluginRepository>
-	</pluginRepositories>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-oxm</artifactId>
-			<version>1.5.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-core</artifactId>
-			<version>1.5.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-xml</artifactId>
-			<version>1.5.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-core-tiger</artifactId>
-			<version>1.5.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-oxm-tiger</artifactId>
-			<version>1.5.4</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-support</artifactId>
-			<version>1.5.4</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.ws.commons.schema
-			</groupId>
-			<artifactId>XmlSchema</artifactId>
-			<version>1.4.2</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>2.1.5</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.xml.soap</groupId>
-			<artifactId>saaj-api</artifactId>
-			<version>1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.messaging.saaj</groupId>
-			<artifactId>saaj-impl</artifactId>
-			<version>1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>xmlrpc</groupId>
-			<artifactId>xmlrpc-client</artifactId>
-			<version>3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock-junit4</artifactId>
-			<version>2.5.1</version>
-		</dependency>
-        <!-- The next dependencies are needed for JPA/MySql persistence -->
+    <build>
+        <finalName>calculator</finalName>
+        
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.9.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generatePackage>nl.ead.webservice</generatePackage>
+                    <schemaDirectory>${basedir}/src/main/webapp/calculator</schemaDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <!--Start Spring-WS dependencies-->
+        <!--Spring-WS-->
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+            <version>${spring.ws.version}</version>
+        </dependency>
+        <!--Optional runtime dependency for inlining XSD's-->
+        <dependency>
+            <groupId>org.apache.ws.xmlschema</groupId>
+            <artifactId>xmlschema-core</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <!--End Spring-WS dependencies-->
+        
+        <!--Start Unit Testing dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!--End Unit Testing dependencies-->
+        
+        <!--Start Persistance JPA/MySQL dependencies-->
+        <!--MySQL database driver used by Hibernate/c3p0-->      
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.0.5</version>
+            <version>5.1.31</version>
         </dependency>
+        
+        <!--Hibernate ORM for persistance-->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.2.6.ga</version>
+            <artifactId>hibernate-core</artifactId>
+            <version>${spring.framework.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.4.0.GA</version>
-        </dependency>
+        
+        <!--Hibernate EntityManager provides the implementation of the JPA EntityManager-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.3.2.GA</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-tools</artifactId>
-            <version>3.2.0.ga</version>
-        </dependency>
-        <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.8.4.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.5.5</version>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jpa</artifactId>
             <version>2.0.8</version>
         </dependency>
+        
+        <!--c3p0 is a connection pooler, it avoids creating new database connections
+        by mantaining a pool of open connections-->
         <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-            <version>1.1</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${spring.framework.version}</version>
+        </dependency>        
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
         </dependency>
+        
+        <!--Spring container managed transactions-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.0.5.RELEASE</version>
+        </dependency>
+        <!--End Persistance JPA/MySQL dependencies-->
+        
+        <!--Start dependencies needed for demo-->
+        <dependency>
+            <groupId>org.apache.xmlrpc</groupId>
+            <artifactId>xmlrpc-client</artifactId>
+            <version>3.1.3</version>
+        </dependency>
+        <!--End dependencies needed for demo-->
     </dependencies>
 </project>

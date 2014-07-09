@@ -1,33 +1,32 @@
 package nl.ead.webservice.dao;
 
-import nl.ead.webservice.model.Calculation;
-
 import javax.persistence.*;
+import nl.ead.webservice.model.Calculation;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Description for the class CalculationDao:
  * <p/>
  * Example usage:
  * <p/>
- * <pre>
+ * <
+ * pre>
  *
  * </pre>
  *
  * @author mdkr
  * @version Copyright (c) 2012 HAN University, All rights reserved.
  */
+@Repository
 public class CalculationDao implements ICalculationDao {
-    public void save(Calculation calculation) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("calculator");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
 
-        try {
-            tx.begin();
-            em.persist(calculation);
-            tx.commit();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
+    @PersistenceContext
+    private EntityManager em;
+
+    @Transactional
+    @Override
+    public void save(Calculation calculation) {
+        em.persist(calculation);
     }
 }
