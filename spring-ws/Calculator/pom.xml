@@ -16,6 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.ws.version>2.1.4.RELEASE</spring.ws.version>
         <spring.framework.version>4.0.5.RELEASE</spring.framework.version>
+        <hibernate.version>4.3.7.Final</hibernate.version>
     </properties>
 
     <build>
@@ -102,14 +103,14 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${spring.framework.version}</version>
+            <version>${hibernate.version}</version>
         </dependency>
         
         <!--Hibernate EntityManager provides the implementation of the JPA EntityManager-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${spring.framework.version}</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -122,7 +123,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
-            <version>${spring.framework.version}</version>
+            <version>${hibernate.version}</version>
         </dependency>        
         <dependency>
             <groupId>c3p0</groupId>
