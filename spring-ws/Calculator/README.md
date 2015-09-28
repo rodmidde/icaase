@@ -2,6 +2,7 @@
     * Install MySQL, create a database named dare2date accessible for the root user using no password. For connection details see persistence.xml.
 	* Fix your JDK to 1.6 or higher
 	* When you use IntelliJ just open the pom.xml instead of importing the project
+	* Make sure you installed Maven 3.3 or higher
 	* Try to run mvn clean package (use mvn generate-sources later to re-generate the Java stubs based on the XSD-files)
 	* If it fails on javax.activation: 
 		* Watch the within-a-minute screencast: https://vimeo.com/67329514
