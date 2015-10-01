@@ -3,8 +3,8 @@ If you are a Vagrant user
 1. Follow the steps in the [repository's README](/README.md)
 2. Run:
 ```bash
-vagrant ssh # Login to the Vagrant Box using (via a terminal or Git Bash)
-cd spring-ws/Calculator # Navigate to this folder
+vagrant ssh
+cd spring-ws/Calculator
 mvn clean package
 mvn tomcat:run
 ```

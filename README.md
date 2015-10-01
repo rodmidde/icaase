@@ -13,8 +13,9 @@ cd ~ && ssh-keygen -t rsa -C "you@homestead"
 ```
 Next, run the following commands from your project's folder
 ``` bash
-vagrant up && vagrant ssh #(if it requests a password, it's: vagrant)
+vagrant up && vagrant ssh
 ```
+- If it requests a password, it's: vagrant
 - If you get an error, download the Virtual Machine likely failed. To resume run the same command again. If that fails immediately, run this command and try again: "rm -rf ~/.vagrant.d/tmp/*"
 
 Wait until the machine has booted and run the following commands from within the Vagrant box.
