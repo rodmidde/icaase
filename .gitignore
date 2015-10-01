@@ -1,1 +1,4 @@
 [Tt]arget
+.vagrant
+.cache
+.m2

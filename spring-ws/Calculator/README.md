@@ -1,18 +1,32 @@
+If you are a Vagrant user
+=====
+1. Follow the steps in the [repository's README]('/README.md')
+2. Run:
+```bash
+vagrant ssh # Login to the Vagrant Box using (via a terminal or Git Bash)
+cd spring-ws/Calculator # Navigate to this folder
+mvn clean package
+mvn tomcat:run
+```
+3. Visit [192.168.10.10:8080/Calculator/calculatorservice.wsdl](192.168.10.10:8080/Calculator/calculatorservice.wsdl)
+
+If you aren't using Vagrant
+=====
 * To start:
     * Install MySQL, create a database named dare2date accessible for the root user using no password. For connection details see persistence.xml.
 	* Fix your JDK to 1.6 or higher
 	* When you use IntelliJ just open the pom.xml instead of importing the project
 	* Make sure you installed Maven 3.3 or higher
 	* Try to run mvn clean package (use mvn generate-sources later to re-generate the Java stubs based on the XSD-files)
-	* If it fails on javax.activation: 
+	* If it fails on javax.activation:
 		* Watch the within-a-minute screencast: https://vimeo.com/67329514
 		* Download the file manually: http://mirrors.ibiblio.org/maven2/javax/xml/bind/activation/1.0.2/activation-1.0.2.jar
-		* Add it to your local repo: 
+		* Add it to your local repo:
 			mvn install:install-file -DgroupId=javax.activation -DartifactId=activation -Dversion=1.0.2 -Dpackaging=jar -Dfile=activation-1.0.2.jar
 	* Try to run mvn tomcat:run (or deploy the app to a Tomcat server running in your IDE)
 	* Visit the WSDL manually or use SOAPUI: http://localhost:8080/Calculator/calculatorservice.wsdl
 	* When running the projects results in a HTTP Bad Request, try to run the web-application in a separate Tomcat instance: Download and install Tomcat, Create a Server Configuration in your IDE and start/debug your application on Tomcat in your IDE.
-* To debug: 
+* To debug:
 	* export (or set on Windows) MAVEN_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=n"
 	* In your IDE: Debug->Remote Server/Process (and attach to debub port 4000)
 * Uses spring-ws 1.5.2
