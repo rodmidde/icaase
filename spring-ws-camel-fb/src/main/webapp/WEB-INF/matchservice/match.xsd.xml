@@ -1,0 +1,10 @@
+<mes:MatchRequest xmlns:mes="http://www.han.nl/schemas/messages">
+  <mes:user>
+    <mes:twitterName>rodmidde</mes:twitterName>
+    <mes:facebookid>647217628</mes:facebookid>
+  </mes:user>
+  <mes:user>
+    <mes:twitterName>rodym</mes:twitterName>
+    <mes:facebookid>100008342014641</mes:facebookid>
+  </mes:user>
+</mes:MatchRequest>

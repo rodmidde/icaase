@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.han.nl/schemas/messages"
+           xmlns:han="http://www.han.nl/schemas/messages">
+
+    <xs:complexType name="MatchResult">
+        <xs:sequence>
+            <xs:element name="number" type="xs:integer" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="User">
+        <xs:sequence>
+            <xs:element name="twitterName" type="xs:string"/>
+            <xs:element name="facebookid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="MatchRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="han:User" minOccurs="2" maxOccurs="2"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MatchResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="matchResult" type="han:MatchResult" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
