@@ -44,14 +44,14 @@
         <property name="locationUri" value="http://localhost:8080/match"/>
     </bean>
     <bean class="org.apache.camel.component.facebook.config.FacebookConfiguration">
-        <property name="OAuthAccessToken" value="CAACEdEose0cBAHicLNeZCoL3sRMNTU4kib0SbKRPWULuNr4QexgsyXBQXNpoo4Y8ZCIiMvVjIRZAgw8IX9OboSPBverDyRfG66nFZBOegoOisJDZARj09dKyFvbbXqZAVYMiwIwu9cbHODRyiZCEmjXa85deuU8wiFKM4iyiqKOZBIMKaD1hAfKyZA6EOU0MvJ5AOA8vtzR6pH5agrQgaxlnH"></property>
-        <property name="OAuthAppId" value="1226238470735470"></property>
-        <property name="OAuthAppSecret" value="e7915e936c85a34a85d8134fc5ea432c"></property>
+        <property name="OAuthAccessToken" value="YOUR_OAUTH_ACCESSTOKEN_HERE"></property>
+        <property name="OAuthAppId" value="YOUR_OAUTH_APPID_HERE"></property>
+        <property name="OAuthAppSecret" value="YOUR_OAUTH_APPSECRET_HERE"></property>
     </bean>
     <bean id="twitter" class="org.apache.camel.component.twitter.TwitterComponent">
-        <property name="accessToken" value="31465375-jqyJ1PUb7YaAhzNNxvXvQ7vhG9CJjm4mkwHR3w4Mn"></property>
-        <property name="accessTokenSecret" value="Bv5qG9FHE0mL38X9V5uAm1SVp9Bc39veqoG2Y2SFxfqbV"></property>
-        <property name="consumerKey" value="cdYTHfO1F99qYWK4KNMcSpFbw"></property>
-        <property name="consumerSecret" value="RM3H6iYGmWfHnz7pJ1Akmlo4AW53uR9CS7H5YfiMd5uV5SJ7RS"></property>
+        <property name="accessToken" value="YOUR_ACCESSTOKEN_HERE"></property>
+        <property name="accessTokenSecret" value="YOUR_ACCESSTOKEN_SECRET_HERE"></property>
+        <property name="consumerKey" value="YOUR_CONSUMERKEY_HERE"></property>
+        <property name="consumerSecret" value="YOUR_CONSUMERSECRET_HERE"></property>
     </bean>
 </beans>

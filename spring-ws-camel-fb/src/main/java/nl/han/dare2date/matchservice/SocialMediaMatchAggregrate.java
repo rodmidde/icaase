@@ -13,11 +13,23 @@ import java.util.ArrayList;
 public class SocialMediaMatchAggregrate implements AggregationStrategy {
     private int match = 0;
 
+    /**
+     * This method is called every time a to(...) returns a response. This response (whether it's from
+     * twitter or facebook) is sent in the body of the newExchange.
+     *
+     * @param oldExchange
+     * @param newExchange
+     * @return
+     */
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
         if (oldExchange == null) {
             return newExchange;
         }
 
+        /**
+         * Build a Response using the results of twitter & facebook. This is no useful
+         * matchalgorithm but you can do better don't you?
+         */
         increateMatchValueForFacebookUser(oldExchange, newExchange);
         increaseMatchForTwitterStatus(oldExchange, newExchange);
 
@@ -28,6 +40,7 @@ public class SocialMediaMatchAggregrate implements AggregationStrategy {
         ArrayList<Status> statuses = newExchange.getIn().getBody(ArrayList.class);
         if (statuses != null) {
             for (Status status : statuses) {
+                // A match is bigger when a user has a lots of tweets favoured
                 match += status.getFavoriteCount();
             }
             MatchResult matchResult = new MatchResult();
@@ -43,6 +56,7 @@ public class SocialMediaMatchAggregrate implements AggregationStrategy {
         if (user != null) {
             match += user.getName().length();
             MatchResult matchResult = new MatchResult();
+            // A match is bigger when a user has a long name
             matchResult.setNumber(BigInteger.valueOf(match));
             MatchResponse matchResponse = new MatchResponse();
             matchResponse.setMatchResult(matchResult);
