@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.han.nl/schemas/messages"
+        xmlns:tns="http://www.han.nl/schemas/messages"
+        xmlns:types="http://www.han.nl/schemas/types"
+        elementFormDefault="qualified">
+
+    <import namespace="http://www.han.nl/schemas/types" schemaLocation="types.xsd"/>
+ 
+	<element name="CalculateRequest">
+        <complexType>
+            <sequence>
+                <element name="input" type="types:CalculateInput" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+        </complexType>	
+	</element>
+
+	<element name="CalculateResponse">
+        <complexType>
+            <sequence>
+                <element name="result" type="types:CalculateResult" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+        </complexType>	
+	</element>
+</schema>
