@@ -14,7 +14,7 @@
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.connection.password" value="your_pass_here" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/dare2date" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
