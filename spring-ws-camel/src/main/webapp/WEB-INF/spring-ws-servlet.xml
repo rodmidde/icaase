@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
        xmlns:camel="http://camel.apache.org/schema/spring"
        xsi:schemaLocation="
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,7 +12,20 @@
         <camel:routeBuilder ref="applyRegistrationRoute"/>
     </camel:camelContext>
 
-    <bean id="applyRegistrationRoute" class="nl.han.dare2date.service.web.applyregistration.ApplyRegistrationRoute"/>
+    <bean id="applyRegistrationRoute" class="nl.han.dare2date.service.web.applyregistration.ApplyRegistrationRoute">
+        <constructor-arg ref="simpleDao"/>
+    </bean>
+
+    <bean id="simpleDao" class="nl.han.dare2date.service.dao.SimpleDao"/>
+
+    <!--This bean gets used to create EntityManagers which can be used for Repositories/DAOs-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="calculator"/>
+    </bean>
+    <!--This bean gets used to manage the transactions inside the EntityManagers, without it data would not get saved as transactions are never flushed-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
 
     <!-- === Endpoint mapping(s) ==== -->
     <bean id="applyRegistrationEndpointMapping" class="org.apache.camel.component.spring.ws.bean.CamelEndpointMapping">

@@ -16,6 +16,8 @@
  */
 package nl.han.dare2date.service.web.applyregistration;
 
+import nl.han.dare2date.service.dao.Calculation;
+import nl.han.dare2date.service.dao.SimpleDao;
 import nl.han.dare2date.service.web.applyregistration.model.ApplyRegistrationRequest;
 import nl.han.dare2date.service.web.applyregistration.model.ApplyRegistrationResponse;
 import org.apache.camel.Exchange;
@@ -33,6 +35,12 @@ import org.apache.camel.converter.jaxb.JaxbDataFormat;
  * (otherwise: http://localhost:8080/applyregistration.wsdl)
  */
 public class ApplyRegistrationRoute extends RouteBuilder {
+    private SimpleDao simpleDao;
+
+    public ApplyRegistrationRoute(SimpleDao simpleDao) {
+        this.simpleDao = simpleDao;
+    }
+
     @Override
     public void configure() throws Exception {
         JaxbDataFormat jaxb = new JaxbDataFormat(ApplyRegistrationRequest.class.getPackage().getName());
@@ -41,8 +49,9 @@ public class ApplyRegistrationRoute extends RouteBuilder {
                 .from("spring-ws:rootqname:{http://www.han.nl/schemas/messages}ApplyRegistrationRequest?endpointMapping=#applyRegistrationEndpointMapping")
                     .unmarshal(jaxb).
                             log("${body}").
-                                process(new Echo())
-                                    .marshal(jaxb);
+                                process(new Echo()).
+                                        process(new DataConnector(simpleDao))
+                                            .marshal(jaxb);
     }
 
     private static final class Echo implements Processor {
@@ -50,6 +59,18 @@ public class ApplyRegistrationRoute extends RouteBuilder {
             ApplyRegistrationResponse registrationResponse = new ApplyRegistrationResponse();
             registrationResponse.setRegistration(exchange.getIn().getBody(ApplyRegistrationRequest.class).getRegistration());
             exchange.getOut().setBody(registrationResponse);
+        }
+    }
+
+    private static final class DataConnector implements Processor {
+        private SimpleDao simpleDao;
+
+        public DataConnector(SimpleDao simpleDao) {
+            this.simpleDao = simpleDao;
+        }
+
+        public void process(Exchange exchange) throws Exception {
+            simpleDao.save(new Calculation("1+1", "2"));
         }
     }
 }
