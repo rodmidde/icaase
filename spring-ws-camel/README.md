@@ -1,3 +1,15 @@
+How to run this route
+---------------------
+1. Run Maven: ```mvn clean package```
+2. Create a run-configuration for Tomcat 7 or 8
+3. Deploy the war (Dare2DateCamel.war) to the Tomcat instance
+4. Run Tomcat
+5. Visit http://localhost:8080/Dare2DateCamel/applyregistration.wsdl or drop a SOAP message in the inbox folder
+
+For steps 2-4 you can also Run Maven ```mvn tomcat:run```. 
+
+Implementation
+--------------
 When you run the ApplyRegistrationRoute, messages can be obtained from two sources:
 * inbox-folder (located in the bin-directory of your Tomcat/Jetty instance (don't run this example with mvn tomcat:run, instead use a separate Tomcat server. In src/main/webapp/WEB-INF/applyregistrationservice an example messages is included which
  you can copy to your inbox folder in case your webservice is not available.
