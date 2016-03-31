@@ -5,5 +5,5 @@ Steps
 3. Modify the spring-ws-servlet.xml
 4. Run mvn generate-sources
 5. Run mvn package
-6. Run the .war on Tomcat or Jetty
+6. Run the .war on Tomcat or Jetty (mvn tomcat:run may fail so mvn jetty:run can save your ass)
 7. Visit localhost:8080/match/match.wsdl for the WSDL and call it with SOAPUI, you'll find match.xsd.xml as an example input
