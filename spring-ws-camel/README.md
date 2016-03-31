@@ -5,6 +5,7 @@ How to run this route
 3. Deploy the war (Dare2DateCamel.war) to the Tomcat instance
 4. Run Tomcat. If only the Tomcat homepage shows up you have to fall back to the alternative 
 5. Visit http://localhost:8080/Dare2DateCamel/applyregistration.wsdl or drop a SOAP message in the inbox folder
+6. This project does not contain a JAXB-plugin so you have to generate (right click XSD->WebServices->Generate Java Code...) Java classes yourself based on your own XSD.
 
 Alternative
 -----------
